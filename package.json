@@ -1,0 +1,41 @@
+{
+  "name": "@roukara/grid-helper",
+  "version": "0.0.1",
+  "description": "A simple grid helper",
+  "author": {
+    "name": "Tsukasa Aoki",
+    "url": "https://www.roukara.net"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/grid-helper.umd.js",
+  "module": "./dist/grid-helper.mjs",
+  "types": "./dist/GridHelper.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/grid-helper.mjs",
+      "require": "./dist/grid-helper.umd.js",
+      "types": "./dist/GridHelper.d.ts"
+    }
+  },
+  "keywords": [
+    "grid",
+    "helper",
+    "design"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/roukara/grid-helper.git"
+  },
+  "license": "ISC",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2",
+    "vite": "^5.2.0"
+  }
+}
