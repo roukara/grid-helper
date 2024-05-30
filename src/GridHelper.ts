@@ -37,8 +37,6 @@ export class GridHelper {
 
     document.body.appendChild(this.container);
 
-    this.setCssVariables();
-
     window.addEventListener('keydown', e => {
       if (e.key === 'g') this.toggleVisibility();
     });
@@ -63,29 +61,6 @@ export class GridHelper {
       const item = document.createElement('div');
       item.style.border = `1px solid ${this.options.color}`;
       this.container.appendChild(item);
-    }
-  }
-
-  private setCssVariables(): void {
-    const rootStyle = document.documentElement.style;
-    const { count, gutter, margin, type } = this.options;
-    
-    rootStyle.setProperty('--grid-count', count.toString());
-    rootStyle.setProperty('--grid-gutter', `${gutter}px`);
-    rootStyle.setProperty('--grid-margin', `${margin}px`);
-    
-    switch(type) {
-      case 'column':
-        rootStyle.setProperty('--grid-size', `${(window.innerWidth - gutter * (count - 1) - margin * 2) / count}px`);
-        break;
-      case 'row':
-        rootStyle.setProperty('--grid-size', `${(window.innerHeight - gutter * (count - 1) - margin * 2) / count}px`);
-        break;
-      case 'grid':
-        const gridCount = Math.sqrt(count);
-        rootStyle.setProperty('--grid-width', `${(window.innerWidth - gutter * (count - 1) - margin * 2) / gridCount}px`);
-        rootStyle.setProperty('--grid-height', `${(window.innerHeight - gutter * (count - 1) - margin * 2) / gridCount}px`);
-        break;
     }
   }
 
