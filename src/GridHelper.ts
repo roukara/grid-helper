@@ -37,6 +37,8 @@ export class GridHelper {
 
     document.body.appendChild(this.container);
 
+    this.setCssVariables();
+
     window.addEventListener('keydown', e => {
       if (e.key === 'g') this.toggleVisibility();
     });
@@ -62,6 +64,14 @@ export class GridHelper {
       item.style.border = `1px solid ${this.options.color}`;
       this.container.appendChild(item);
     }
+  }
+
+  private setCssVariables(): void {
+    const rootStyle = document.documentElement.style;
+    rootStyle.setProperty('--grid-count', this.options.count.toString());
+    rootStyle.setProperty('--grid-gutter', `${this.options.gutter}px`);
+    rootStyle.setProperty('--grid-margin', `${this.options.margin}px`);
+    rootStyle.setProperty('--grid-size', `calc((100% - (${this.options.count} - 1) * ${this.options.gutter}px) / ${this.options.count})`);
   }
 
   public toggleVisibility(): void {
