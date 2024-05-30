@@ -20,6 +20,8 @@ export class GridHelper {
     this.container = document.createElement('div');
     Object.assign(this.container.style, {
       position: 'fixed',
+      top: '0',
+      left: '0',
       width: '100%',
       height: '100%',
       display: this.options.type === 'grid' ? 'grid' : 'flex',
