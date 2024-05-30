@@ -15,7 +15,7 @@ export class GridHelper {
 
   constructor(options: GridHelperOptions) {
     this.options = options;
-    this.isVisible = true;
+    this.isVisible = false;
 
     this.container = document.createElement('div');
     Object.assign(this.container.style, {
@@ -27,6 +27,7 @@ export class GridHelper {
       display: this.options.type === 'grid' ? 'grid' : 'flex',
       gap: `${this.options.gutter}px`,
       padding: `${this.options.margin}px`,
+      visibility: 'hidden',
       pointerEvents: 'none',
       zIndex: '9999'
     });
