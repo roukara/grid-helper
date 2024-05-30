@@ -71,7 +71,6 @@ export class GridHelper {
     rootStyle.setProperty('--grid-count', this.options.count.toString());
     rootStyle.setProperty('--grid-gutter', `${this.options.gutter}px`);
     rootStyle.setProperty('--grid-margin', `${this.options.margin}px`);
-    rootStyle.setProperty('--grid-size', `calc((100% - (${this.options.count} - 1) * ${this.options.gutter}px) / ${this.options.count})`);
   }
 
   public toggleVisibility(): void {
