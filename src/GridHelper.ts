@@ -68,9 +68,25 @@ export class GridHelper {
 
   private setCssVariables(): void {
     const rootStyle = document.documentElement.style;
-    rootStyle.setProperty('--grid-count', this.options.count.toString());
-    rootStyle.setProperty('--grid-gutter', `${this.options.gutter}px`);
-    rootStyle.setProperty('--grid-margin', `${this.options.margin}px`);
+    const { count, gutter, margin, type } = this.options;
+    
+    rootStyle.setProperty('--grid-count', count.toString());
+    rootStyle.setProperty('--grid-gutter', `${gutter}px`);
+    rootStyle.setProperty('--grid-margin', `${margin}px`);
+    
+    switch(type) {
+      case 'column':
+        rootStyle.setProperty('--grid-size', `${(window.innerWidth - gutter * (count - 1) - margin * 2) / count}px`);
+        break;
+      case 'row':
+        rootStyle.setProperty('--grid-size', `${(window.innerHeight - gutter * (count - 1) - margin * 2) / count}px`);
+        break;
+      case 'grid':
+        const gridCount = Math.sqrt(count);
+        rootStyle.setProperty('--grid-width', `${(window.innerWidth - gutter * (count - 1) - margin * 2) / gridCount}px`);
+        rootStyle.setProperty('--grid-height', `${(window.innerHeight - gutter * (count - 1) - margin * 2) / gridCount}px`);
+        break;
+    }
   }
 
   public toggleVisibility(): void {
