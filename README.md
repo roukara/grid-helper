@@ -1,6 +1,6 @@
 # @roukara/grid-helper
 
-@roukara/grid-helper is a library that generates a grid layout in the DOM for easy visualization. It supports three types of grids: column, row, and grid.
+@roukara/grid-helper is a library that generates a grid layout in the DOM for easy visualization.
 
 ## Installation
 
@@ -17,10 +17,10 @@ Import @roukara/grid-helper and create an instance with the configuration option
 import { GridHelper, GridHelperOptions } from '@roukara/grid-helper';
 
 const options: GridHelperOptions = {
-  type: 'grid', // 'column', 'row', or 'grid'
-  count: 9,
-  gutter: 10,
-  margin: 20,
+  column: 3,
+  row: 3,
+  gutter: '10px',
+  margin: '20px',
   color: 'red'
 };
 
@@ -28,10 +28,10 @@ const gridHelper = new GridHelper(options);
 ```
 
 ## Options
-- `type`: The type of grid. Can be 'column', 'row', or 'grid'.
-- `count`: The number of grid items.
-- `gutter`: The space between grid items, in pixels.
-- `margin`: The outer margin of the grid, in pixels.
+- `column`: The number of columns.
+- `row`: The number of rows.
+- `gutter`: The space between grid items.
+- `margin`: The outer margin of the grid.
 - `color`: The color of the grid lines.
 
 ## Toggle Grid Visibility
