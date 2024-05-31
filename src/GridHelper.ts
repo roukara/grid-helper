@@ -1,15 +1,13 @@
-type GridType = 'column' | 'row' | 'grid';
-
 export interface GridHelperOptions {
-  type: GridType;
-  count: number;
-  gutter: number;
-  margin: number;
+  column: number;
+  row: number;
+  gutter: string;
+  margin: string;
   color: string;
 }
 
 export class GridHelper {
-  private options: GridHelperOptions;
+  options: GridHelperOptions;
   private isVisible: boolean;
   private container: HTMLDivElement;
 
@@ -24,19 +22,15 @@ export class GridHelper {
       left: '0',
       width: '100%',
       height: '100%',
-      display: this.options.type === 'grid' ? 'grid' : 'flex',
-      gap: `${this.options.gutter}px`,
-      padding: `${this.options.margin}px`,
+      display: 'grid',
+      gap: this.options.gutter,
+      padding: this.options.margin,
       visibility: 'hidden',
       pointerEvents: 'none',
       zIndex: '9999'
     });
 
-    if (this.options.type === 'column' || this.options.type === 'row') {
-      this.generateFlexGrid();
-    } else if (this.options.type === 'grid') {
-      this.generateGridLayout();
-    }
+    this.generateGrid();
 
     document.body.appendChild(this.container);
 
@@ -45,22 +39,11 @@ export class GridHelper {
     });
   }
 
-  private generateFlexGrid(): void {
-    this.container.style.flexDirection = this.options.type === 'column' ? 'row' : 'column';
-    for (let i = 0; i < this.options.count; i++) {
-      const item = document.createElement('div');
-      item.style.flex = '1';
-      item.style.border = `1px solid ${this.options.color}`;
-      this.container.appendChild(item);
-    }
-  }
+  private generateGrid(): void {
+    this.container.style.gridTemplateColumns = `repeat(${this.options.column}, 1fr)`;
+    this.container.style.gridTemplateRows = `repeat(${this.options.row}, 1fr)`;
 
-  private generateGridLayout(): void {
-    const gridSize = Math.sqrt(this.options.count);
-    this.container.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
-    this.container.style.gridTemplateRows = `repeat(${gridSize}, 1fr)`;
-
-    for (let i = 0; i < this.options.count; i++) {
+    for (let i = 0; i < this.options.column * this.options.row; i++) {
       const item = document.createElement('div');
       item.style.border = `1px solid ${this.options.color}`;
       this.container.appendChild(item);
