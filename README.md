@@ -14,14 +14,15 @@ npm install @roukara/grid-helper
 Import @roukara/grid-helper and create an instance with the configuration options.
 
 ```ts
-import { GridHelper, GridHelperOptions } from '@roukara/grid-helper';
+import GridHelper from '@roukara/grid-helper';
 
-const options: GridHelperOptions = {
-  column: 3,
-  row: 3,
+const options = {
+  column: 6,
+  row: 6,
   gutter: '10px',
-  margin: '20px',
-  color: 'red'
+  margin: '10px',
+  color: 'rgba(255, 0, 0, .5)',
+  parent: document.body
 };
 
 const gridHelper = new GridHelper(options);
@@ -33,6 +34,7 @@ const gridHelper = new GridHelper(options);
 - `gutter`: The space between grid items.
 - `margin`: The outer margin of the grid.
 - `color`: The color of the grid lines.
+- `parent`: The parent element of the grid.
 
 ## Toggle Grid Visibility
 Press the `g` key to toggle the visibility of the grid.

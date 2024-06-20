@@ -1,23 +1,32 @@
 export interface GridHelperOptions {
-  column: number;
-  row: number;
-  gutter: string;
-  margin: string;
-  color: string;
+  column?: number;
+  row?: number;
+  gutter?: string;
+  margin?: string;
+  color?: string;
+  parent?: HTMLElement;
 }
 
-export class GridHelper {
+export default class GridHelper {
   options: GridHelperOptions;
   private isVisible: boolean;
   private container: HTMLDivElement;
 
   constructor(options: GridHelperOptions) {
-    this.options = options;
+    this.options = {
+      column: 6,
+      row: 6,
+      gutter: '10px',
+      margin: '10px',
+      color: 'rgba(255, 0, 0, .5)',
+      parent: document.body,
+      ...options
+    };
     this.isVisible = false;
 
     this.container = document.createElement('div');
     Object.assign(this.container.style, {
-      position: 'fixed',
+      position: 'absolute',
       top: '0',
       left: '0',
       width: '100%',
@@ -32,7 +41,7 @@ export class GridHelper {
 
     this.generateGrid();
 
-    document.body.appendChild(this.container);
+    this.options.parent!.appendChild(this.container);
 
     window.addEventListener('keydown', e => {
       if (e.key === 'g') this.toggleVisibility();
@@ -43,7 +52,7 @@ export class GridHelper {
     this.container.style.gridTemplateColumns = `repeat(${this.options.column}, 1fr)`;
     this.container.style.gridTemplateRows = `repeat(${this.options.row}, 1fr)`;
 
-    for (let i = 0; i < this.options.column * this.options.row; i++) {
+    for (let i = 0; i < this.options.column! * this.options.row!; i++) {
       const item = document.createElement('div');
       item.style.border = `1px solid ${this.options.color}`;
       this.container.appendChild(item);
